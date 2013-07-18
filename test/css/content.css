@@ -1,0 +1,140 @@
+
+@media screen {
+    html, body, section {
+        background: #333  fixed;
+        background-image: url(../i/bg/carbon_fibre.png);
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+    section {
+        background-image: none;
+    }
+    section div.content {
+        padding:20px;
+    }
+    div.outer {
+        padding-bottom: 20px;
+        padding-top:40px;
+    }
+
+
+    section {
+        border-radius: 8px;
+        box-shadow: inset 0 0 4px 4px rgba(30,30,30,0.5);
+    }
+    *.printonly {
+        display: none;
+    }
+    div#content {
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    div#content section {
+        display:none;
+        min-height:616px;
+        left: 50%;
+        margin-left: -308px;
+        position: absolute;
+        top: 32px;
+        width: 616px;
+        z-index: 1;
+    }
+    div#content section.active {
+        display:block !important;
+    }
+    section h1:first-child,
+    section h2:first-child,
+    section h3:first-child {
+        margin-top:0;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    body div#content {
+        height: 100%;
+    }
+    body div#content section.active {
+        left: 0;
+        margin-left: 0;
+        min-height:100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+ div.tests p {
+        background: rgba(251, 255, 138, 0.8) no-repeat 98% 50%;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYUEB4U4PLY6wAAACZpVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVAgb24gYSBNYWOV5F9bAAAAGklEQVRIx+3BMQEAAADCoPVP7W8GoAAAAOANDi4AAbvaTIQAAAAASUVORK5CYII=);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+        color:#000;
+        font-family: monospace;
+        margin: 0 0 10px 20px;
+        padding: 10px 18px;
+        transition: all 300ms linear;
+    }
+    div.tests p.fail {
+        background-image: url(http://cdn5.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/32/bullet_deny.png);
+        border: 1px solid red;
+    }
+    div.tests p.pass {
+        background-image: url(http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/32/bullet_accept.png);
+        border: 1px solid green;
+    }
+    div.tests {
+    }
+    div.col {
+        display: inline-block;
+        min-height: 200px;
+        position: relative;
+        vertical-align: top;
+    }
+    div.editor {
+        border: 10px solid transparent;
+        border-radius: 5px;
+        box-shadow: 0 0 4px 4px rgba(0,0,0,0.3);
+        transition: all 300ms linear;
+        width: 40%;
+    }
+    div.editor.invalid {
+        box-shadow: 0 0 4px 4px red;
+    }
+
+    #editor {
+        font-size: 11px;
+        margin: 0;
+        position: absolute;
+        padding: 8px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+div.card {
+    padding:12px;
+}
+
+h1,h2,h3 {
+    font-family: 'Shadows Into Light Two', cursive;
+}
+p, li {
+    font-family: 'Annie Use Your Telescope', cursive;
+}
+pre {
+    border-radius: 8px;
+    font-size: 0.7em !important;/* override rainbow settings*/
+    width: 80%;
+}
+input[type=text] {
+    padding: 3px 8px;
+}
+label {
+    display: inline-block;
+    width:80px;
+}

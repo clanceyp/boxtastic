@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Pandora's box</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <!--[if lt IE 8]>
+        <link rel="stylesheet" href="css/ie-6-7.css">
+        <![endif]-->
+        <!--[if IE 8]>
+        <link rel="stylesheet" href="css/ie-8.css">
+        <![endif]-->
+        <link rel="stylesheet" href="css/box.css">
+        <link rel="stylesheet" href="css/content.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/themes/blackboard.css" data-noprefix="true">
+        <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' data-noprefix="true" rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' data-noprefix="true" type='text/css'>
+        <!-- script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script -->
+        <script src="https://rawgithub.com/LeaVerou/prefixfree/gh-pages/prefixfree.js"></script>
+
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script src="https://rawgithub.com/clanceyp/prefixfree/gh-pages/plugins/prefixfree.eventname.js"></script>
+
+        <script src="js/box.js"></script>
+
+
+
+
+
+    </head>
+    <body>
+
+
+<div class="outer">
+    <header class="printonly">
+        <h1 class="small-box-shadow">UI test</h1>
+        <p>Make the tests on the right pass...</p>
+    </header>
+    <div id="tastic-container" class="box-container">
+        <div class="cube" id="box">
+            <div class="face"></div>
+            <div class="face"></div>
+            <div class="face"></div>
+            <div class="face"></div>
+            <div class="face"></div>
+            <div class="face"></div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div class="row">
+        <section id="welcome" class="page active">
+            <div class="content">
+                <div class="panel">
+                    <header>
+                        <h1 class="small-box-shadow">Hi, welcome to Testlicious!</h1>
+                        <h2>Interface developer aptitude test.</h2>
+                    </header>
+
+                    <p>Various
+                    interface development related teasers, as well as some more random questions.
+                    Feel free to use the internet as much as you like. If you get asked to do any
+                    CSS the house style is alphabetical and prefix free, e.g. <pre data-language="css"><code>*.mystyle {
+    border: ...;
+    cursor: ...;
+    transform: ...;
+    z-index: ...;
+}</code></pre>
+                    </p>
+                    <p>Think standards based, accessible, semantic code and you'll be fine.</p>
+                    <p>Navigate using the up down left right keys, toggle full screen using the 'esc' key.</p>
+                    <p>If you have been asked to complete this by a prospective employer,
+                        please enter your access code and your email address.
+                        </p>
+                    <p>
+                        <label for="reg-code">12 digit code</label>
+                        <input id="reg-code" type="text">
+                    </p>
+
+                    <p>
+                        <label for="email">email address</label>
+                        <input id="email" type="text" value="email" onfocus="if(this.value === 'email'){this.value=''}">
+                    </p>
+                    <!--
+                    <div class="tac">
+                        <img src="http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/128/arrow_right.png" alt="go">
+                    </div>
+                    -->
+                    <p class="tac">
+
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="" class="">
+            <div class="content">
+                <header>
+                    <h2>hello again</h2>
+                    <p>im the welcome page part two</p>
+                </header>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <section id="page01" class="page"><div class="content">
+            <h2>page 11</h2>
+            <p>im page one</p></div>
+        </section>
+        <section id="page02" class="page"><div class="content">
+            <h2>page 12</h2>
+            <p>im page 12</p></div>
+        </section>
+        <section id="page03" class="page"><div class="content">
+            <h2>page 13</h2>
+            <p>im page 13</p></div>
+        </section>
+        <section id="page04" class="page"><div class="content">
+            <h2>page 14</h2>
+            <p>im page 14</p></div>
+        </section>
+    </div>
+    <div class="row">
+        <section class="page"><div class="content">
+            <h2>page 21</h2>
+            <p>im page 2one</p></div>
+        </section>
+        <section class="page"><div class="content">
+            <h2>page 22</h2>
+            <p>im page 22</p></div>
+        </section>
+        <section class="page"><div class="content">
+            <h2>page 23</h2>
+            <p>im page 23</p></div>
+        </section>
+        <section class="page"><div class="content">
+            <h2>page 24</h2>
+            <p>im page 24</p></div>
+        </section>
+    </div>
+</div>
+
+<script>
+
+    var tests=
+        [{
+            "type":"javascript",
+            "about":"Incomplete function",
+            "intro":"This function should add its arguments together and return the total when no further argument is supplied",
+            "run":"js",
+            "name":"booga",
+            "id":101,
+            "button":"run my code",
+            "solution":function(n){
+                var total = 0,
+                    fn = function(n){
+                        if (!!n){
+                            total += n;
+                            return fn;
+                        }
+                        return total;
+                    }
+                return fn(n);
+            },
+            "base":"function booga(n){"+
+"\n  var total = 0,"+
+"\n      fn = function(){};"+
+"\n  return total;"+
+"\n}",
+            "tests":[
+                {"data":"()"},
+                {"data":"(2)(3)()"},
+                {"data":"(2)(3)(5)()"},
+                {"data":"(2)(3)(5)(8)(13)()"}
+            ]
+        },
+        {
+            "type":"html",
+            "about":"This page doesn't validate :( can you fix it?",
+            "run":"validateHTML",
+            "name":"Validate this",
+            "id":102,
+            "button":"validate...",
+            "solution":"invalid",
+            "base":"<!doctype html>"+
+"\n<html>"+
+"\n  <head>"+
+"\n    <meta charset=\"utf-8\">"+
+"\n  </head>"+
+"\n  <body>"+
+"\n    <h1>Hello world!</h1>"+
+"\n  </body>"+
+"\n</html>",
+        "tests":[
+            {"data":"HTML5","title":"validator.w3.org"}
+        ]}
+       ];
+
+
+    var testLoader = {
+        currentTest : 0,
+        getCurrentTest : function(i, hard){
+            if (hard){
+                currentTest = i;
+            } else {
+                currentTest += i;
+            }
+            return currentTest;
+        },
+        load:function(test, container){
+            function draw(){
+                $(container).empty();
+                var intro = (test.intro) ? '<p>'+ test.intro +'</p>':'';
+                $(container).html('<div class="card"><header><h2 class="small-box-shadow">'+ test.about +'</h2>'+intro+'</header><div class="row"><div class="col editor"><div id="editor"></div></div><div class="col tests"></div></div><p class="tac relative"><button class="small-box-shadow">'+ test.button +'</button><input class="right page-forward" type="image" alt="next" src="http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/128/arrow_right.png"></p></div>');
+
+                $(test.tests).each(function(i, t){
+                    if (test.run === "validateHTML"){
+                        $(container).find("div.tests").append('<p data-validate="'+ t.data +'">Validate, '+ t.title +'</p>');
+                    } else {
+                        $(container).find("div.tests").append('<p>'+test.name+'<span>'+ t.data +'</span> = <b>'+ eval('test.solution'+ t.data) +'</b></p>');
+                    }
+
+                });
+            }
+            var tester = {
+                log:function(){
+                    if ("console" in window && console.log){
+                        console.log(arguments);
+                    }
+                },
+                js:function(obj){
+                    $(container).find("div.tests p").each(function(i, el){
+                        var pass = 'fail';
+                        try {
+                            var result = eval("(obj.test"+ test.tests[i].data +")"),
+                                    expect = eval('test.solution'+ test.tests[i].data );
+                            pass = (result == expect) ? "pass" : "fail";
+                        } catch(e){
+                            tester.log(e)
+                        }
+                        $(el).addClass( pass );
+                    });
+                },
+                validateHTML:function(obj){
+                    var jqxhr = $.post("/validate/check", {
+                        fragment: obj
+                    }, function(data) {
+                        var pass = 'fail';
+                        try {
+                            var result = jqxhr.getResponseHeader("X-W3C-Validator-Status"),
+                                errors = jqxhr.getResponseHeader("X-W3C-Validator-Errors"),
+                                expect = 'Valid';
+                            pass = (result == expect) ? "pass" : "fail";
+                            $(container).find('div.tests p[data-validate=HTML5]').attr( 'title', 'Number of errors; '+ errors );
+                        } catch(e){
+                            console.log(e);
+                        }
+                        $(container).find('div.tests p[data-validate=HTML5]').addClass( pass );
+                    }).fail(function() {
+                                console.log('connection error');
+                                $(container).find('div.tests p[data-validate=HTML5]').addClass( 'fail' )
+                            })
+                }
+            }
+            draw();
+            var editor = ace.edit( $(container).find('div.editor>div').get(0) ),
+                theme = 'solarized_dark';
+
+            $(container).find('button').on('click',function(e){
+                var editorContents = editor.getValue(),
+                    obj;
+                $(container).find("div.tests p").removeClass('pass').removeClass('fail');
+                $(container).find("div.editor").removeClass('invalid');
+                if (test.run === "js"){
+                    try {
+                        obj = eval("({'test':" + editorContents + "})");
+                    }catch(e){
+                        $(container).find("div.editor").addClass('invalid');
+                    }
+                } else {
+                    obj = editorContents;
+                }
+                if (!$(container).find('button').hasClass('run')){
+                    $(container).find('button').addClass('run');
+                    tester[test.run](obj);
+                } else {
+                    setTimeout(function(){
+                        tester[test.run](obj);
+                    },300);
+                }
+            });
+            $(container).find("div.editor").addClass('ace-'+theme.replace(/_/g,'-'));
+            editor.setTheme("ace/theme/"+ theme);
+            editor.getSession().setMode("ace/mode/"+test.type);
+            editor.renderer.setShowGutter(false);
+            editor.setValue( test.base );
+        }
+    }
+
+
+
+</script>
+<!--
+        <script>
+            var _gaq=[['_setAccount','UA-2067012-1'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+-->
+
+    <script src="js/vendor/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/onload.js"></script>
+
+    <script>
+        testLoader.load( tests[ testLoader.getCurrentTest(0, true) ], "div.row:nth-child(2) section:first-child" );
+        testLoader.load( tests[ testLoader.getCurrentTest(1, false) ], "div.row:nth-child(2) section:nth-child(2)" );
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/rainbow.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/css.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/javascript.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/html.min.js"></script>
+    </body>
+</html>

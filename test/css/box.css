@@ -1,0 +1,237 @@
+
+div.box-container {
+    perspective: 1000px;
+}
+div#box.up {
+    animation-name:up;
+}
+div#box.down {
+    animation-name:down;
+}
+div#box.left {
+    animation-name:left;
+}
+div#box.right {
+    animation-name:right;
+}
+div#box.spin {
+    animation-name:spin;
+}
+div#box {
+    animation-duration: 900ms;
+    animation-fill-mode: backwards;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-direction: normal;
+}
+div#box {
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+    transform: scale3d(0.8,0.8,0.8);
+    transform-style: preserve-3d;
+    width: 600px;
+}
+div#box>div.face {
+    background: #222 ;
+    border: 0px solid #222;
+    border-radius: 12px;
+    box-shadow: 0 0 3px 3px rgba(0,0,0,0.2);
+    height: 584px;
+    opacity: 1;
+    padding:8px;
+    position: absolute;
+    transform: translateZ(300px);
+    width: 584px;
+}
+div#box>div.face:nth-child(1) {
+}
+div#box>div.face:nth-child(2) {
+    transform : rotateY(90deg)  translateZ(300px);
+}
+div#box>div.face:nth-child(3) {
+    transform : rotateY(180deg) translateZ(300px);
+}
+div#box>div.face:nth-child(4) {
+    transform : rotateY(-90deg) translateZ(300px);
+}
+div#box>div.face:nth-child(5) {
+    transform : rotateX(90deg) translateZ(300px);
+}
+div#box>div.face:nth-child(6)  {
+    transform : rotateX(-90deg) translateZ(300px);
+}
+
+
+
+
+@keyframes spin {
+  0%   {
+    transform: rotateX(0deg) rotateY(0deg)  scale3d(0.8,0.8,0.8);
+  }
+  50% {
+    transform: rotateX(360deg) rotateY(180deg)  scale3d(0.3,0.3,0.3);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg)  scale3d(0.8,0.8,0.8);
+  }
+}
+@keyframes left {
+ 0%{
+    transform:  rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+  50% {
+    transform: rotateX(0deg) rotateY(45deg) rotateZ(0deg)   scale3d(0.5,0.5,0.5);
+  }
+ 100% {
+    transform: rotateX(0deg) rotateY(90deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+}
+@keyframes right {
+ 0%{
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+  50% {
+    transform: rotateX(0deg) rotateY(-45deg) rotateZ(0deg)   scale3d(0.5,0.5,0.5);
+  }
+ 100% {
+    transform: rotateX(0deg) rotateY(-90deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+}
+
+@keyframes down {
+ 0%{
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+ 50% {
+    transform: rotateX(45deg) rotateY(0deg) rotateZ(0deg)   scale3d(0.5,0.5,0.5);
+ }
+ 100% {
+    transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+}
+
+@keyframes up {
+ 0%{
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+ 50% {
+    transform: rotateX(-45deg) rotateY(0deg) rotateZ(0deg)   scale3d(0.5,0.5,0.5);
+ }
+ 100% {
+    transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+}
+
+body section {
+    transition: all 300ms ease-in-out;
+}
+div.box-container section {
+    height: 100%;
+}
+
+/* full screen mode */
+body.box-fullscreen div#content {
+    height: 100%;
+}
+body.box-fullscreen div#content section.active {
+    left: 0;
+    margin-left: 0;
+    min-height:100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+header {
+    margin-left:0;
+    min-height: 40px;
+    transition: all 200ms linear;
+}
+body.box-fullscreen header {
+    margin-left:140px;
+    min-height: 126px;
+}
+body.box-fullscreen div.box-control {
+    top:70px;
+}
+
+@media screen {
+
+    div.box-control {
+        background-color: rgba(0,0,0,0.3);
+        border: 5px solid rgba(80,80,80,0.5);
+        border-radius: 20px;
+        box-shadow: 0 0 2px 2px rgba(0,0,0,0.3);
+        cursor: move;
+        height: 7em;
+        left:20px;
+        margin-top: -3.5em;
+        position: fixed;
+        top:50%;
+        transition: top 200ms linear;
+        width: 7em;
+        z-index: 2;
+    }
+    div.box-control span {
+        display: block;
+    }
+    div.box-control button {
+        border: 2px solid #888;
+        border-radius: 6px;
+        box-shadow: 0 0 2px 2px rgba(0,0,0,0.5),
+        inset 0 0 1px 1px rgba(0,0,0,0.2);
+        height: 2em;
+        position: absolute;
+        transition: all 10ms linear;
+        width:2em;
+    }
+    div.box-control button.active,
+    div.box-control button:active {
+        background: #000;
+        border: 2px solid #fff;
+        color:#fff;
+    }
+    button.box-control-left {
+        left:4px;
+        margin-top:-1em;
+        top:50%;
+    }
+    button.box-control-up {
+        left:50%;
+        margin-left:-1em;
+        top:4px;
+    }
+    button.box-control-right {
+        right:4px;
+        margin-top:-1em;
+        top:50%;
+    }
+    button.box-control-down {
+        bottom:4px;
+        left:50%;
+        margin-left:-1em;
+    }
+    button.box-control-toggle-fullscreen {
+        left: 50%;
+        margin-left:-1em;
+        margin-top:-1em;
+        top: 50%;
+    }
+    button.box-control-left span {
+        transform:rotate(90deg);
+    }
+    button.box-control-up span {
+        transform:rotate(180deg);
+    }
+    button.box-control-right span {
+        transform:rotate(-90deg);
+    }
+    button.box-control-down span {
+        transform:rotate(0deg);
+    }
+}
+
+
+
+
+

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <!--[if lt IE 8]>
+        <link rel="stylesheet" href="css/ie-6-7.css">
+        <![endif]-->
+        <!--[if IE 8]>
+        <link rel="stylesheet" href="css/ie-8.css">
+        <![endif]-->
+
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+<style>
+
+@keyframes spin {
+  0%   {
+    transform: rotateX(0deg) rotateY(0deg)  scale3d(0.8,0.8,0.8);
+  }
+  50% {
+    transform: rotateX(360deg) rotateY(180deg)  scale3d(0.3,0.3,0.3);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg)  scale3d(0.8,0.8,0.8);
+  }
+}
+@keyframes forward {
+ 0%{
+    transform:  rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+ 100% {
+    transform: rotateX(0deg) rotateY(90deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+}
+@keyframes back {
+ 0%{
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+ 100% {
+    transform: rotateX(0deg) rotateY(-90deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+}
+
+@keyframes down {
+ 0%{
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+ 100% {
+    transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+}
+
+@keyframes up {
+ 0%{
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+ 100% {
+    transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+ }
+}
+
+    #tastic-container {
+        margin-top:120px;
+        perspective: 1200;
+    }
+
+    div.animate {
+        animation-duration: 3000ms;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
+    }
+    div.cube {
+        height: 600px;
+        margin: 0 auto;
+        position: relative;
+        transform: scale3d(0.8,0.8,0.8);
+        transform-style: preserve-3d;
+        width: 600px;
+    }
+    div.cube>div.face {
+        background: #333 url(i/bg/carbon_fibre.png);
+        border: 8px solid #222;
+        border-radius: 8px;
+        height: 560px;
+        opacity: 1;
+        padding: 20px;
+        position: absolute;
+        transform: translateZ(300px);
+        width: 560px;
+    }
+    div.cube>div.face:nth-child(1) {
+    }
+    div.cube>div.face:nth-child(2) {
+        transform         : rotateY(90deg)  translateZ(300px);
+    }
+    div.cube>div.face:nth-child(3) {
+        transform         : rotateY(180deg) translateZ(300px);
+    }
+    div.cube>div.face:nth-child(4) {
+        transform         : rotateY(-90deg) translateZ(300px);
+    }
+    div.cube>div.face:nth-child(5) {
+        transform         : rotateX(-90deg) translateZ(300px) rotate(180deg);
+    }
+    div.cube>div.face:nth-child(6)  {
+        transform         : rotateX(90deg) translateZ(300px);
+    }
+/*
+*/
+
+    html, body {
+        background: #333 ;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    h1,h2,h3,h4,h5 {
+        background-color: #333;
+        color:#fff;
+        font-weight: normal;
+        margin-top:0;
+        padding: 4px 14px;
+    }
+    *.small-box-shadow {
+        box-shadow: 0 0 2px 2px rgba(0,0,0,0.6);
+        border-radius: 4px;
+    }
+    *.panel {
+        background-color: #333;
+        border: 1px solid #111;
+        border-radius: 5px;
+        box-shadow: 0 0 4px 4px rgba(0,0,0,0.3);
+        padding: 10px 20px 30px 20px;
+    }
+    body {
+        font-size: 78%;
+    }
+    div.row {
+
+    }
+    div.row {
+        vertical-align: top;
+    }
+    div.tests p {
+        background: rgba(251, 255, 138, 0.8) no-repeat 98% 50%;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QYUEB4U4PLY6wAAACZpVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVAgb24gYSBNYWOV5F9bAAAAGklEQVRIx+3BMQEAAADCoPVP7W8GoAAAAOANDi4AAbvaTIQAAAAASUVORK5CYII=);
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+        color:#000;
+        font-family: monospace;
+        margin: 0 0 10px 20px;
+        padding: 10px 18px;
+        transition: all 300ms linear;
+    }
+    div.tests p.fail {
+        background-image: url(http://cdn5.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/32/bullet_deny.png);
+        border: 1px solid red;
+    }
+    div.tests p.pass {
+        background-image: url(http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/32/bullet_accept.png);
+        border: 1px solid green;
+    }
+    div.tests {
+    }
+    div.col {
+        display: inline-block;
+        min-height: 200px;
+        position: relative;
+        vertical-align: top;
+    }
+    div.editor {
+        border: 10px solid transparent;
+        border-radius: 5px;
+        box-shadow: 0 0 4px 4px rgba(0,0,0,0.3);
+        transition: all 300ms linear;
+        width: 280px;
+    }
+    div.editor.invalid {
+        box-shadow: 0 0 4px 4px red;
+    }
+
+    #editor {
+        font-size: 11px;
+        margin: 0;
+        position: absolute;
+        padding: 8px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    button {
+        border: 0 none;
+        border-radius: 6px;
+        box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+        font-size: 1.3em;
+        margin: -1px 0 0 -1px;
+        padding: 10px 0;
+        text-shadow: 1px 1px #fff;
+        width:50%
+    }
+    button:active {
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        margin:0 0 0 0;
+    }
+    div.outer {
+        margin: 20px auto;
+        width: 800px;
+    }
+
+    *.printonly {
+        position: absolute;
+        top: -999cm;
+    }
+    *.tac {
+        text-align: center;
+    }
+    *.relative {
+        position: relative;
+    }
+    input.right {
+        cursor: pointer;
+        position: absolute;
+        right:0;
+        top:0;
+        width:48px;
+    }
+
+</style>
+    </head>
+    <body>
+
+
+<div class="outer">
+    <header class="printonly">
+        <h1 class="small-box-shadow">UI test</h1>
+        <p>Make the tests on the right pass...</p>
+    </header>
+    <div id="tastic-container">
+        <div class="cube animate">
+            <div class="face" id="testcontainer">
+                <div class="card">
+                <h1 class="small-box-shadow">Hi, welcome to Testlicious!</h1>
+                <div class="panel">
+                <p>Make the tests pass and show off your interface developer skills.</p>
+                <div class="home-nav">
+                    <img src="http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/128/arrow_right.png" alt="go" class="page-start">
+
+                </div>
+                <p class="tac">
+
+                </p>
+                </div>
+                </div>
+            </div>
+            <div class="face">2</div>
+            <div class="face">3</div>
+            <div class="face">4</div>
+            <div class="face">5</div>
+            <div class="face">6</div>
+        </div>
+    </div>
+</div>
+<script>
+    var box = {
+            animate:function(name){
+                $('div.animate').css('animationName' , name).attr('data-animation-name', name);
+            },
+            callback:function(e){
+
+            },
+            forward:function(page){
+
+            },
+            back:function(page){
+
+            }
+        }
+    var tests=
+        [{
+            "type":"javascript",
+            "about":"Incomplete function",
+            "intro":"This function should add its arguments together and return the total when no further argument is supplied",
+            "run":"js",
+            "name":"booga",
+            "button":"run my code",
+            "solution":function(n){
+                var total = 0,
+                    fn = function(n){
+                        if (!!n){
+                            total += n;
+                            return fn;
+                        }
+                        return total;
+                    }
+                return fn(n);
+            },
+            "base":"function booga(n){"+
+"\n  var total = 0,"+
+"\n      fn = function(){};"+
+"\n  return total;"+
+"\n}",
+            "tests":[
+                {"data":"()"},
+                {"data":"(2)(3)()"},
+                {"data":"(2)(3)(5)()"},
+                {"data":"(2)(3)(5)(8)(13)(21)()"}
+            ]
+        },
+        {
+            "type":"html",
+            "about":"This page doesn't validate :( can you fix it?",
+            "run":"validateHTML",
+            "name":"Validate this",
+            "button":"validate...",
+            "solution":"invalid",
+            "base":"<!doctype html>"+
+"\n<html>"+
+"\n  <head>"+
+"\n    <meta charset=\"utf-8\">"+
+"\n  </head>"+
+"\n  <body>"+
+"\n    <h1>Hello world!</h1>"+
+"\n  </body>"+
+"\n</html>",
+        "tests":[
+            {"data":"HTML5","title":"validator.w3.org"}
+        ]}
+       ];
+
+
+    var testLoader = {
+        currentTest : 0,
+        getCurrentTest : function(i, hard){
+            if (hard){
+                currentTest = i;
+            } else {
+                currentTest += i;
+            }
+            return currentTest;
+        },
+        load:function(test, container){
+            function draw(){
+                $(container).empty();
+                var intro = (test.intro) ? '<p>'+ test.intro +'</p>':'';
+                $(container).html('<div class="card"><h2 class="small-box-shadow">'+ test.about +'</h2>'+intro+'<div class="row"><div class="col editor"><div id="editor"></div></div><div class="col tests"></div></div><p class="tac relative"><button class="small-box-shadow">'+ test.button +'</button><input class="right page-forward" type="image" alt="next" src="http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/128/arrow_right.png"></p></div>');
+
+                $(test.tests).each(function(i, t){
+                    if (test.run === "validateHTML"){
+                        $(container).find("div.tests").append('<p data-validate="'+ t.data +'">Validate, '+ t.title +'</p>');
+                    } else {
+                        $(container).find("div.tests").append('<p>'+test.name+'<span>'+ t.data +'</span> = <b>'+ eval('test.solution'+ t.data) +'</b></p>');
+                    }
+
+                });
+            }
+            var tester = {
+                log:function(){
+                    if ("console" in window && console.log){
+                        console.log(arguments);
+                    }
+                },
+                js:function(obj){
+                    $(container).find("div.tests p").each(function(i, el){
+                        var pass = 'fail';
+                        try {
+                            var result = eval("(obj.test"+ test.tests[i].data +")"),
+                                    expect = eval('test.solution'+ test.tests[i].data );
+                            pass = (result == expect) ? "pass" : "fail";
+                        } catch(e){
+                            tester.log(e)
+                        }
+                        $(el).addClass( pass );
+                    });
+                },
+                validateHTML:function(obj){
+                    var jqxhr = $.post("/validate/check", {
+                        fragment: obj
+                    }, function(data) {
+                        var pass = 'fail';
+                        try {
+                            var result = jqxhr.getResponseHeader("X-W3C-Validator-Status"),
+                                errors = jqxhr.getResponseHeader("X-W3C-Validator-Errors"),
+                                expect = 'Valid';
+                            pass = (result == expect) ? "pass" : "fail";
+                            $(container).find('div.tests p[data-validate=HTML5]').attr( 'title', 'Number of errors; '+ errors );
+                        } catch(e){
+                            console.log(e);
+                        }
+                        $(container).find('div.tests p[data-validate=HTML5]').addClass( pass );
+                    }).fail(function() {
+                                console.log('connection error');
+                                $(container).find('div.tests p[data-validate=HTML5]').addClass( 'fail' )
+                            })
+                }
+            }
+            draw();
+            var editor = ace.edit("editor"),
+                    theme = 'solarized_dark';
+
+            $(container).find('button').on('click',function(e){
+                var editorContents = editor.getValue(),
+                        obj;
+                $(container).find("div.tests p").removeClass('pass').removeClass('fail');
+                $(container).find("div.editor").removeClass('invalid');
+                if (test.run === "js"){
+                    try {
+                        obj = eval("({'test':" + editorContents + "})");
+                    }catch(e){
+                        $(container).find("div.editor").addClass('invalid');
+                    }
+                } else {
+                    obj = editorContents;
+                }
+                if (!$(container).find('button').hasClass('run')){
+                    $(container).find('button').addClass('run');
+                    tester[test.run](obj);
+                } else {
+                    setTimeout(function(){
+                        tester[test.run](obj);
+                    },300);
+                }
+            });
+            $("div.editor").addClass('ace-'+theme.replace(/_/g,'-'));
+            editor.setTheme("ace/theme/"+ theme);
+            editor.getSession().setMode("ace/mode/"+test.type);
+            editor.renderer.setShowGutter(false);
+            editor.setValue( test.base );
+        }
+    }
+
+
+
+</script>
+        <script>
+            var _gaq=[['_setAccount','UA-2067012-1'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+
+
+<script src="js/vendor/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var currentTest = 0,
+        getCurrentTest = function(i, hard){
+            if (hard){
+                currentTest = i;
+            } else {
+                currentTest += i;
+            }
+            return currentTest;
+        }
+    $(document).ready(function(){
+        setTimeout(function(){
+            //$('body').addClass('go');
+            //testLoader.load( tests[ testLoader.getCurrentTest(0, true) ], "#testcontainer" );
+        },1500)
+
+        $('div.animate').one('webkitAnimationEnd animationend',function(e){
+            var animationName = $('div.animate').css('animationName' , '').attr('data-animation-name');
+            testLoader.load( tests[ testLoader.getCurrentTest(0, true) ], "#testcontainer" );
+
+
+            setTimeout(function(){
+                // document.querySelector('div.animate').style.webkitAnimationName = 'spinBack';
+            },1000)
+        })
+        $("body").on("click",".page-forward",function(){
+            testLoader.load( tests[ testLoader.getCurrentTest(1) ], "#testcontainer" );
+        })
+        $("body").on("click",".page-back",function(){
+            testLoader.load( tests[ testLoader.getCurrentTest(-1) ], "#testcontainer" );
+        })
+        $("body").on("click",".page-start",function(){
+            setTimeout(function(){
+                //testLoader.load( tests[ testLoader.getCurrentTest(0, true) ], "#testcontainer" );
+            },1500);
+            $('div.card').fadeOut(200, function() {
+                $('div.animate').css('animationName' , 'spin').attr('data-animation-name','spin');
+            });
+        })
+        //load( tests[ getCurrentTest(0, true) ], "#testcontainer" );
+    })
+</script>
+
+
+
+    </body>
+</html>
