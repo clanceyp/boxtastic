@@ -28,12 +28,12 @@ div#box {
     height: 600px;
     margin: 0 auto;
     position: relative;
-    transform: scale3d(0.8,0.8,0.8);
+    transform: scale3d(0.79,0.79,0.79);
     transform-style: preserve-3d;
     width: 600px;
 }
 div#box>div.face {
-    background: #222 ;
+    background: #888 ;/* 222 */
     border: 0px solid #222;
     border-radius: 12px;
     box-shadow: 0 0 3px 3px rgba(0,0,0,0.2);
@@ -73,53 +73,53 @@ div#box>div.face:nth-child(6)  {
     transform: rotateX(360deg) rotateY(180deg)  scale3d(0.3,0.3,0.3);
   }
   100% {
-    transform: rotateX(0deg) rotateY(0deg)  scale3d(0.8,0.8,0.8);
+    transform: rotateX(0deg) rotateY(90deg)  scale3d(0.8,0.8,0.8);
   }
 }
 @keyframes left {
  0%{
-    transform:  rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+    transform:  rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.79,0.79,0.79)
  }
   50% {
     transform: rotateX(0deg) rotateY(45deg) rotateZ(0deg)   scale3d(0.5,0.5,0.5);
   }
  100% {
-    transform: rotateX(0deg) rotateY(90deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+    transform: rotateX(0deg) rotateY(90deg) rotateZ(0deg) scale3d(0.79,0.79,0.79)
  }
 }
 @keyframes right {
  0%{
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.79,0.79,0.79)
  }
   50% {
     transform: rotateX(0deg) rotateY(-45deg) rotateZ(0deg)   scale3d(0.5,0.5,0.5);
   }
  100% {
-    transform: rotateX(0deg) rotateY(-90deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+    transform: rotateX(0deg) rotateY(-90deg) rotateZ(0deg) scale3d(0.79,0.79,0.79)
  }
 }
 
 @keyframes down {
  0%{
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.79,0.79,0.79)
  }
  50% {
     transform: rotateX(45deg) rotateY(0deg) rotateZ(0deg)   scale3d(0.5,0.5,0.5);
  }
  100% {
-    transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+    transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) scale3d(0.79,0.79,0.79)
  }
 }
 
 @keyframes up {
  0%{
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0.79,0.79,0.79)
  }
  50% {
     transform: rotateX(-45deg) rotateY(0deg) rotateZ(0deg)   scale3d(0.5,0.5,0.5);
  }
  100% {
-    transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg) scale3d(0.8,0.8,0.8)
+    transform: rotateX(-90deg) rotateY(0deg) rotateZ(0deg) scale3d(0.79,0.79,0.79)
  }
 }
 

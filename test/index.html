@@ -19,6 +19,7 @@
         <![endif]-->
         <link rel="stylesheet" href="css/box.css">
         <link rel="stylesheet" href="css/content.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/themes/blackboard.css" data-noprefix="true">
         <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light+Two' data-noprefix="true" rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' data-noprefix="true" type='text/css'>
@@ -69,19 +70,14 @@
 
                     <p>Various
                     interface development related teasers, as well as some more random questions.
-                    Feel free to use the internet as much as you like. If you get asked to do any
-                    CSS the house style is alphabetical and prefix free, e.g. <pre data-language="css"><code>*.mystyle {
-    border: ...;
-    cursor: ...;
-    transform: ...;
-    z-index: ...;
-}</code></pre>
+                    Feel free to use the internet as much as you like.
                     </p>
                     <p>Think standards based, accessible, semantic code and you'll be fine.</p>
                     <p>Navigate using the up down left right keys, toggle full screen using the 'esc' key.</p>
                     <p>If you have been asked to complete this by a prospective employer,
                         please enter your access code and your email address.
                         </p>
+                    <fieldset>
                     <p>
                         <label for="reg-code">12 digit code</label>
                         <input id="reg-code" type="text">
@@ -89,25 +85,104 @@
 
                     <p>
                         <label for="email">email address</label>
-                        <input id="email" type="text" value="email" onfocus="if(this.value === 'email'){this.value=''}">
+                        <input id="email" data-message="email" type="text" value="">
                     </p>
+                    <p>
+                        <input id="submit" class="left-margin dark" type="submit" value="Log in">
+                    </p>
+                    </fieldset>
                     <!--
                     <div class="tac">
                         <img src="http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/128/arrow_right.png" alt="go">
                     </div>
                     -->
-                    <p class="tac">
-
-                    </p>
+                    <footer>
+                        <nav>
+                        <ul class="footer-nav">
+                            <li class="up"><a class="box-control-up">about</a></li>
+                            <li class="right"><a class="box-control-right">before you start &gt;</a></li>
+                            <li class="left"><a class="box-control-left">&lt; contact us</a></li>
+                            <li class="down"><a class="box-control-down">start</a></li>
+                        </ul>
+                        </nav>
+                    </footer>
                 </div>
             </div>
         </section>
-        <section id="" class="">
+        <section>
             <div class="content">
                 <header>
-                    <h2>hello again</h2>
-                    <p>im the welcome page part two</p>
+                    <h2>Before you start</h2>
+
                 </header>
+                <h3>CSS (cascading style sheets)</h3>
+                <p>If you get asked to write any
+                    CSS the house style is alphabetical,
+                    use the wild card * to match any element
+                    and prefix free (don't bother prefixing CSS3 styles), e.g. </p>
+<pre class="resizable"><code data-language="css">*.mystyle {
+    border: ... ;
+    cursor: ... ;
+    transform: ... ;
+    z-index: ... ;
+}</code></pre>
+                <h3>HTML (hypertext markup language)</h3>
+                <p>Take care when answering questions related to
+                    HTML that you
+                    note which version of HTML your answer should be in.
+                </p>
+                <p>
+                    The house style for HTML5 is to close tags and
+                    double quote element attributes e.g.
+                </p>
+<pre class="resizable"><code data-language="html">&lt;!DOCTYPE html&gt;
+    &lt;html class="nojs">&lt;/html&gt;
+
+</code></pre>
+
+                <footer>
+                <nav>
+                    <ul class="footer-nav">
+                        <li class="up invisible"><a class="box-control-up">up</a></li>
+                        <li class="right"><a class="box-control-right">more &gt;</a></li>
+                        <li class="left"><a class="box-control-left">&lt; back</a></li>
+                        <li class="down "><a class="box-control-down">start</a></li>
+                    </ul>
+                </nav>
+                </footer>
+            </div>
+        </section>
+        <section>
+            <div class="content">
+                <header>
+                    <h2>Before you start</h2>
+
+                </header>
+                <h3>HTML (hypertext markup language)</h3>
+                <p>Take care when answering questions related to
+                    HTML that you
+                    note which version of HTML your answer should be in.
+                </p>
+                <p>
+                    The house style for HTML5 is to close tags and
+                    double quote element attributes e.g.
+                </p>
+<pre class="resizable" data-language="html"><code>&lt;html class="nojs">&lt;/html&gt;</code></pre>
+                <h3>In general</h3>
+                <p>Although the tests are timed it's much more important
+                to return a correct answer, most questions
+                are easy and shouldn't take long to find a solution on
+                the internet somewhere.</p>
+                <footer>
+                    <nav>
+                        <ul class="footer-nav">
+                            <li class="up invisible"><a class="box-control-up">up</a></li>
+                            <li class="right invisible"><a class="box-control-right">right &gt;</a></li>
+                            <li class="left"><a class="box-control-left">&lt; back</a></li>
+                            <li class="down "><a class="box-control-down">start</a></li>
+                        </ul>
+                    </nav>
+                </footer>
             </div>
         </section>
     </div>
@@ -155,7 +230,8 @@
         [{
             "type":"javascript",
             "about":"Incomplete function",
-            "intro":"This function should add its arguments together and return the total when no further argument is supplied",
+            "intro":"This function should add it's argument to a total and return a function " +
+                    "it should return the current total when no argument is supplied.",
             "run":"js",
             "name":"booga",
             "id":101,
@@ -220,7 +296,7 @@
             function draw(){
                 $(container).empty();
                 var intro = (test.intro) ? '<p>'+ test.intro +'</p>':'';
-                $(container).html('<div class="card"><header><h2 class="small-box-shadow">'+ test.about +'</h2>'+intro+'</header><div class="row"><div class="col editor"><div id="editor"></div></div><div class="col tests"></div></div><p class="tac relative"><button class="small-box-shadow">'+ test.button +'</button><input class="right page-forward" type="image" alt="next" src="http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/128/arrow_right.png"></p></div>');
+                $(container).html('<div class="card"><header><h2 class="small-box-shadow">'+ test.about +'</h2>'+intro+'</header><div class="row"><div class="resizable col editor"><div id="editor"></div></div><div class="col tests"></div></div><p class="tac relative"><button class="small-box-shadow">'+ test.button +'</button><input class="right page-forward" type="image" alt="next" src="http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/128/arrow_right.png"></p></div>');
 
                 $(test.tests).each(function(i, t){
                     if (test.run === "validateHTML"){
@@ -326,6 +402,7 @@
         testLoader.load( tests[ testLoader.getCurrentTest(1, false) ], "div.row:nth-child(2) section:nth-child(2)" );
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/rainbow.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/generic.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/css.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/javascript.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/html.min.js"></script>

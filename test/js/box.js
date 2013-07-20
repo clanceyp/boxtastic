@@ -2,6 +2,7 @@
 'use strict';
 
     var box = {
+        dubbyPage:'<section><h2>Lorem ipsum dolor sit ame</h2><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p><ul><li>Sed ut perspiciatis unde omnis</li><li>Sed ut perspiciatis unde omnis</li><li>Sed ut perspiciatis unde omnis</li><li>Sed ut perspiciatis unde omnis</li><li>Sed ut perspiciatis unde omnis</li></ul><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p><footer><nav><ul class="footer-nav"><li class="up"><a class="box-control-up">up</a></li><li class="right"><a class="box-control-right">right &gt;</a></li><li class="left"><a class="box-control-left">&lt; left</a></li><li class="down"><a class="box-control-down">down</a></li></ul></nav></footer></section>',
         currentPage : [0,0],
         boxClasses:['up','right','down','left','spin'],
         currentSequence: 0,
@@ -63,13 +64,12 @@
                 next: $(nextContent).addClass('pending').clone()
             }, 1);
             box.animate('right');
-
         },
         up:function(){
             var row = box.currentPage[0],
                 content = $('#content div.row:nth-child('+ (row+1) +') section:nth-child('+ (box.currentPage[1]+1) +')'),
                 index = box.currentPage[1] = 0,
-                rowCount = $("#content div.row").length,
+                rowCount = $("#content>div.row").length,
                 nextRow = --box.currentPage[0], nextContent;
 
             if (nextRow < 0){
@@ -88,7 +88,7 @@
             var row = box.currentPage[0],
                 content = $('#content div.row:nth-child('+ (row+1) +') section:nth-child('+ (box.currentPage[1]+1) +')'),
                 index = box.currentPage[1] = 0,
-                rowCount = $("#content div.row").length,
+                rowCount = $("#content>div.row").length,
                 nextRow = ++box.currentPage[0], nextContent;
 
             if (nextRow >= rowCount){
@@ -120,19 +120,23 @@
             nextContent = $('#content div.row:nth-child('+ (row+1) +') section:nth-child('+ (nextIndex+1) +')');
 
             $("#content section").removeClass('active');
+
             box.setContent({
                 current: $(content).clone(),
                 next: $(nextContent).addClass('pending').clone()
             }, 1);
+
             box.animate('spin');
         },
         setContent:function(content, i, current){
             current = current || 0;
-            $($('#box div.face').get(current)).html( content.current )
-            $($('#box div.face').get(i)).html( content.next )
+            $('#box>div.face').html( box.dubbyPage );
+            $($('#box div.face').get(current)).html( content.current );
+            $($('#box div.face').get(i)).html( content.next );
         },
-        go:function(direction, page){
-            this[direction](page)
+        go:function(direction){
+            box.setActiveButtonClass('box-control-'+ direction);
+            box[direction]();
         },
         getPage:function(page){
             if (page){
