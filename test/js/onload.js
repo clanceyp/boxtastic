@@ -59,11 +59,11 @@ $(document).ready(function(){
 
     // append javascript controls
     $('div.outer').append('<div class="box-control draggable"><button title="left" class="box-control-left"><span>v</span></button> <button title="right" class="box-control-right"><span>v</span></button><button title="up" class="box-control-up"><span>v</span></button> <button title="down" class="box-control-down"><span>v</span></button> <button title="fullscreen toggle" class="box-control-toggle-fullscreen"><span>x</span></button></div>');
-
+    $( '<div></div>' ).appendTo( "body").css('display','none').append( $('#content').clone().attr('id','raw') );
     setTimeout(function(){
         $( ".draggable" ).draggable();
-        //$( ".resizable" ).resizable();
-    },500)
+        $( "#content *.resizable" ).resizable();
+    },500);
 
     $("input[data-message]").each(function(i, el){
         var m = $(el).attr('data-message');

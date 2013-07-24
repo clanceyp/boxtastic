@@ -86,8 +86,8 @@ a:hover, a:focus {
         box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
         color:#000;
         font-family: monospace;
-        margin: 0 0 10px 20px;
-        padding: 10px 18px;
+        margin: 0 0 10px 12px;
+        padding: 10px 30px 10px 12px;
         transition: all 300ms linear;
     }
     div.tests p.fail {
@@ -100,23 +100,28 @@ a:hover, a:focus {
     }
     div.tests {
     }
+    div.card div.row {
+        width: 100%;
+    }
     div.col {
         display: inline-block;
         min-height: 200px;
         position: relative;
         vertical-align: top;
+        width: 50%;
+    }
+    div.col.tests {
+        width:45%;
     }
     div.editor {
         border: 10px solid transparent;
         border-radius: 5px;
         box-shadow: 0 0 4px 4px rgba(0,0,0,0.3);
         transition: all 300ms linear;
-        width: 40%;
     }
     div.editor.invalid {
         box-shadow: 0 0 4px 4px red;
     }
-
     #editor {
         font-size: 11px;
         margin: 0;
@@ -127,9 +132,13 @@ a:hover, a:focus {
         left: 0;
         right: 0;
     }
-div.card {
-    padding:12px;
-}
+
+    div.card {
+        padding:12px;
+    }
+    div.row div.col:nth-child(1)  {
+
+    }
 
 h1,h2,h3 {
     font-family: 'Shadows Into Light Two', cursive;
@@ -161,19 +170,36 @@ label {
 input.left-margin {
     margin-left: 90px;
 }
-input[type=button],
-input[type=reset],
-input[type=submit] {
-    background-image: -moz-linear-gradient(top, rgba(30,156,129,1) 42%,rgba(22,128,103,1) 50%,rgba(27,163,131,1) 100%);
-    background-image: -webkit-linear-gradient(top, rgba(30,156,129,1) 42%,rgba(22,128,103,1) 50%,rgba(27,163,131,1) 100%);
-    background-image: linear-gradient(top, rgba(30,156,129,1) 42%,rgba(22,128,103,1) 50%,rgba(27,163,131,1) 100%);
+input.button {
+    background-image: -moz-linear-gradient(to bottom, #565e5c 0%,#212322 50%,#0a0e0a 51%,#0a0809 100%);
+    background-image: -webkit-linear-gradient(to bottom, #565e5c 0%,#212322 50%,#0a0e0a 51%,#0a0809 100%);
+    background-image: linear-gradient(to bottom, #565e5c 0%,#212322 50%,#0a0e0a 51%,#0a0809 100%);
     border-radius: 8px;
-    border: 1px solid #000;
-    color: #fff;
-    letter-spacing: 1px;
-    padding: 3px 20px;
+    border: 1px solid #222;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.2);
+    color: #aaa;
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 0.5em 2em;
     text-shadow: -1px -1px #000;
+    transition: all 100ms linear;
 }
+input.button.big-button {
+    border-radius: 18px;
+    font-size: 1.3em;
+}
+input.button:hover,input.button:focus {
+    box-shadow: 0 0  15px 4px rgba(255,255,255,0.5);
+    color: #fff;
+}
+input.button.active {
+    background-color: #fff;
+    background-image: none;
+    color: darkred;
+    text-shadow: 0 0 #000;
+ }
+
 
 *.def {
     color:#888;
