@@ -36,7 +36,7 @@
                 var obj = {
                     editorContents : editor.getValue()
                 };
-                $(container).find("div.tests p").removeClass('pass').removeClass('fail');
+                $(container).find("div.tests p").removeClass('pass').removeClass('fail').find("span.returnValue").remove();
                 $(container).find("div.editor").removeClass('invalid');
 
                 if (!$(container).find('.test-go').hasClass('run')){
@@ -53,16 +53,40 @@
             test.loaded = new Date();
             $(container).find('.test-go').on('click',runTest);
         },
-        saveSolution:function(id, userInput){
+        saveSolution:function(id, userInput, loaded){
             var json = "",
-                obj = {};
+                obj = {},
+                completed = new Date();
             try {
                 obj.test = userInput.test.toString();
+                obj.duration = getTimeDiff(loaded, completed);
                 json = JSON.stringify( obj );
             } catch(e){
-                alert(e);
+                console.log(e);
             }
             localStorage.setItem("TEST-"+id, json);
+            function getTimeDiff(loaded, completed){
+                var seconds = 0,
+                    mil = 0,
+                    mins = 0,
+                    dif = 0,
+                    duration = {};
+                try {
+                    mil = (loaded && completed)? Math.abs(completed.getTime() - loaded.getTime()) : 0;
+                    seconds = mil/1000;
+                    mins = Math.floor(seconds / 60);
+                    dif = seconds - mins * 60;
+                    if (Math.round(dif) < 10){
+                        duration.mins = mins+":0"+ Math.round(dif);
+                    } else {
+                        duration.mins = mins+":"+ Math.round(dif);
+                    }
+                    duration.seconds = seconds;
+                } catch(e){
+                    duration = 0;
+                }
+                return duration;
+            }
         }
     };
 

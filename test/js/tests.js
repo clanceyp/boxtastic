@@ -13,35 +13,40 @@ var tests=
             var userInput,
                 errorCount = 0;
             try {
-                userInput = window.aa = eval("({'test':" + obj.editorContents + "})");
+                userInput = eval("({'test':" + obj.editorContents + "})");
             }catch(e){
                 $(container).find("div.editor").addClass('invalid');
                 alert("Sorry, you may have a parse error in your javascript");
-                return;
+                errorCount = -1;
             } finally {
+                if (errorCount === -1){
+                    return false;
+                }
                 for (var item in this.tests){
                     if (this.tests.hasOwnProperty( item )){
                         var status = "fail",
                             expect,
-                            result;
+                            result,
+                            returnValue;
                         try {
                             expect = eval("this.solution"+ this.tests[item].data );
-                            result = eval("userInput.test"+ this.tests[item].data );
+                            returnValue = result = eval("userInput.test"+ this.tests[item].data );
                             if (expect === result){
                                 status = "pass";
                             }else{
                                 errorCount++;
                             }
                         } catch(e){
+                            returnValue = e;
                             errorCount++;
                             status = "fail";
                         }
-                        $(container).find("p[data-validate="+ this.tests[item].id +"]").addClass( status );
+                        $(container).find("p[data-validate="+ this.tests[item].id +"]").addClass( status).append('<span class="returnValue">'+returnValue+'</span>');
                     }
                 }
                 if (errorCount === 0){
                     // check the testLoader context
-                    window.testLoader.saveSolution(this.id, userInput);
+                    window.testLoader.saveSolution(this.id, userInput, this.loaded);
                 }
             }
         },
@@ -78,7 +83,9 @@ var tests=
             "button":"validate...",
             "solution":"invalid",
             "action":function(container, obj){
-                var jqxhr = $.post("/validate/check", {
+                var test = this,
+                    id = test.tests[0].id,
+                    jqxhr = $.post("/validate/check", {
                         fragment: obj.editorContents
                     }, function(data) {
                         var pass = 'fail';
@@ -87,14 +94,20 @@ var tests=
                                 errors = jqxhr.getResponseHeader("X-W3C-Validator-Errors"),
                                 expect = 'Valid';
                             pass = (result === expect) ? "pass" : "fail";
-                            $(container).find('div.tests p[data-validate=HTML5]').attr( 'title', 'Number of errors; '+ errors );
+                            $(container).find('div.tests p[data-validate='+id+']').attr( 'title', 'Number of errors; '+ errors );
                         } catch(e){
                             console.log(e);
                         }
-                        $(container).find('div.tests p[data-validate=HTML5]').addClass( pass );
+                        $(container).find('div.tests p[data-validate='+id+']').addClass( pass );
+                        if (pass === "pass"){
+                            var userInput = {
+                                test:obj.editorContents
+                            };
+                            window.testLoader.saveSolution(test.id, userInput, test.loaded);
+                        }
                     }).fail(function() {
                         console.log('connection error');
-                        $(container).find('div.tests p[data-validate=HTML5]').addClass( 'fail' );
+                        $(container).find('div.tests p[data-validate='+id+']').addClass( 'fail' );
                     });
             },
             "base":"<!doctype html>"+
@@ -109,6 +122,7 @@ var tests=
             "tests":[
                 {
                     "data":"HTML5",
+                    "id":"html5001",
                     "title":"validator.w3.org"
                 }
             ]}

@@ -226,6 +226,166 @@
     </div>
 </div>
 
+<script>
+
+    var tests=
+        [{
+            "type":"javascript",
+            "about":"Incomplete function",
+            "intro":"This function should add it's argument to a total and return a function " +
+                    "it should return the current total when no argument is supplied.",
+            "run":"js",
+            "name":"booga",
+            "id":101,
+            "button":"run my code",
+            "solution":function(n){
+                var total = 0,
+                    fn = function(n){
+                        if (!!n){
+                            total += n;
+                            return fn;
+                        }
+                        return total;
+                    }
+                return fn(n);
+            },
+            "base":"function booga(n){"+
+"\n  var total = 0,"+
+"\n      fn = function(){};"+
+"\n  return total;"+
+"\n}",
+            "tests":[
+                {"data":"()"},
+                {"data":"(2)(3)()"},
+                {"data":"(2)(3)(5)()"},
+                {"data":"(2)(3)(5)(8)(13)()"}
+            ]
+        },
+        {
+            "type":"html",
+            "about":"This page doesn't validate :( can you fix it?",
+            "run":"validateHTML",
+            "name":"Validate this",
+            "id":102,
+            "button":"validate...",
+            "solution":"invalid",
+            "base":"<!doctype html>"+
+"\n<html>"+
+"\n  <head>"+
+"\n    <meta charset=\"utf-8\">"+
+"\n  </head>"+
+"\n  <body>"+
+"\n    <h1>Hello world!</h1>"+
+"\n  </body>"+
+"\n</html>",
+        "tests":[
+            {"data":"HTML5","title":"validator.w3.org"}
+        ]}
+       ];
+
+
+    var testLoader = {
+        currentTest : 0,
+        getCurrentTest : function(i, hard){
+            if (hard){
+                currentTest = i;
+            } else {
+                currentTest += i;
+            }
+            return currentTest;
+        },
+        load:function(test, container){
+            function draw(){
+                $(container).empty();
+                var intro = (test.intro) ? '<p>'+ test.intro +'</p>':'';
+                $(container).html('<div class="card"><header><h2 class="small-box-shadow">'+ test.about +'</h2>'+intro+'</header><div class="row"><div class="resizable col editor"><div id="editor"></div></div><div class="col tests"></div></div><p class="tac relative"><input class="test-go" type="button" value="'+ test.button +'"/><input class="right page-forward" type="image" alt="next" src="http://cdn1.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/128/arrow_right.png"></p></div>');
+
+                $(test.tests).each(function(i, t){
+                    if (test.run === "validateHTML"){
+                        $(container).find("div.tests").append('<p data-validate="'+ t.data +'">Validate, '+ t.title +'</p>');
+                    } else {
+                        $(container).find("div.tests").append('<p>'+test.name+'<span>'+ t.data +'</span> = <b>'+ eval('test.solution'+ t.data) +'</b></p>');
+                    }
+                });
+            }
+            var tester = {
+                log:function(){
+                    if ("console" in window && console.log){
+                        console.log(arguments);
+                    }
+                },
+                js:function(obj){
+                    $(container).find("div.tests p").each(function(i, el){
+                        var pass = 'fail';
+                        try {
+                            var result = eval("(obj.test"+ test.tests[i].data +")"),
+                                    expect = eval('test.solution'+ test.tests[i].data );
+                            pass = (result == expect) ? "pass" : "fail";
+                        } catch(e){
+                            tester.log(e)
+                        }
+                        $(el).addClass( pass );
+                    });
+                },
+                validateHTML:function(obj){
+                    var jqxhr = $.post("/validate/check", {
+                        fragment: obj
+                    }, function(data) {
+                        var pass = 'fail';
+                        try {
+                            var result = jqxhr.getResponseHeader("X-W3C-Validator-Status"),
+                                errors = jqxhr.getResponseHeader("X-W3C-Validator-Errors"),
+                                expect = 'Valid';
+                            pass = (result == expect) ? "pass" : "fail";
+                            $(container).find('div.tests p[data-validate=HTML5]').attr( 'title', 'Number of errors; '+ errors );
+                        } catch(e){
+                            console.log(e);
+                        }
+                        $(container).find('div.tests p[data-validate=HTML5]').addClass( pass );
+                    }).fail(function() {
+                                console.log('connection error');
+                                $(container).find('div.tests p[data-validate=HTML5]').addClass( 'fail' )
+                            })
+                }
+            }
+            draw();
+            var editor = ace.edit( $(container).find('div.editor>div').get(0) ),
+                theme = 'solarized_dark';
+
+            $(container).find('.test-go').on('click',function(e){
+                var editorContents = editor.getValue(),
+                    obj;
+                $(container).find("div.tests p").removeClass('pass').removeClass('fail');
+                $(container).find("div.editor").removeClass('invalid');
+                if (test.run === "js"){
+                    try {
+                        obj = eval("({'test':" + editorContents + "})");
+                    }catch(e){
+                        $(container).find("div.editor").addClass('invalid');
+                    }
+                } else {
+                    obj = editorContents;
+                }
+                if (!$(container).find('.test-go').hasClass('run')){
+                    $(container).find('.test-go').addClass('run');
+                    tester[test.run](obj);
+                } else {
+                    setTimeout(function(){
+                        tester[test.run](obj);
+                    },300);
+                }
+            });
+            $(container).find("div.editor").addClass('ace-'+theme.replace(/_/g,'-'));
+            editor.setTheme("ace/theme/"+ theme);
+            editor.getSession().setMode("ace/mode/"+test.type);
+            editor.renderer.setShowGutter(false);
+            editor.setValue( test.base );
+        }
+    }
+
+
+
+</script>
 <!--
         <script>
             var _gaq=[['_setAccount','UA-2067012-1'],['_trackPageview']];
@@ -238,69 +398,20 @@
     <script src="js/vendor/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/onload.js"></script>
 
-
-
-
-    <script src="js/vendor/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-
-
+    <script>
+        testLoader.load( tests[ testLoader.getCurrentTest(0, true) ], "div.row:nth-child(2) section:first-child" );
+        testLoader.load( tests[ testLoader.getCurrentTest(1, false) ], "div.row:nth-child(2) section:nth-child(2)" );
+    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/rainbow.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/generic.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/css.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/javascript.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/html.min.js"></script>
 
-    <script src="js/jquery.mustache.js"></script>
-    <script src="js/vendor/mustache.js"></script>
-    <script src="js/testloader.js"></script>
-    <script src="js/tests.js"></script>
 
-    <script type="text/mustache" id="test-two-row-simple">
-        <div class="card">
-            <header class="test-header">
-                <h2 class="small-box-shadow">{{about}}</h2>
-                <p>{{intro}}</p>
-            </header>
-            <div class="row">
-                <div class="col tests">
-                    {{#tests}}
-                    <p data-validate="{{id}}">{{title}}</p>
-                    {{/tests}}
-                </div>
-            </div>
-            <p class="tac button-bar">
-                <input class="test-go big-button button" type="button" value="{{button}}"/>
-            </p>
-        </div>
-    </script>
 
-    <script type="text/mustache" id="test-two-col-simple">
-        <div class="card">
-            <header class="test-header">
-                <h2 class="small-box-shadow">{{about}}</h2>
-                <p>{{intro}}</p>
-            </header>
-            <div class="row">
-                <div class="resizable col editor">
-                    <div id="editor"></div>
-                </div>
-                <div class="col tests">
-                    {{#tests}}
-                    <p data-validate="{{id}}">{{title}}</p>
-                    {{/tests}}
-                </div>
-            </div>
-            <p class="tac button-bar">
-                <input class="test-go big-button button" type="button" value="{{button}}"/>
-            </p>
-        </div>
-    </script>
-    <script>
-        $(document).ready(function(){
-            for (var i = 0, l = tests.length; i<l; i++){
-                testLoader.load( tests[ i ], "div.row:nth-child(2) section:nth-child("+ (i + 1) +")" );
-            }
-        })
+    <script type="text/mustache" id="test-javascript-incomplete">
+        <input type="text" value="{{description}}" />
     </script>
     </body>
 </html>
