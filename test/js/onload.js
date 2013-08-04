@@ -71,7 +71,37 @@ $(document).ready(function(){
             if ($(this).val() === m){
                 $(this).val('').removeClass('def');
             }
-        })
+        });
     });
 
+});
+
+$(document).ready(function(){
+    $('[draggable=true]').each(function(i, el){
+        el.addEventListener( 'dragstart', function (e) {
+            var id = el.id || el.tagName +"-"+ (new Date()).getTime();
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('value', $(el).text());
+            e.dataTransfer.setData('id', el.id = id);
+        });
+    });
+    $('*.drop-zone').each(function(i, el){
+        el.addEventListener( 'drop', function (e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            $('#'+  e.dataTransfer.getData('id')).css('opacity',0);
+            $(el).attr('data-value', e.dataTransfer.getData('value') );
+        });
+        el.addEventListener('dragover', function (e) {
+            if (e.preventDefault){
+                e.preventDefault(); // allows us to drop
+            }
+            return false;
+        });
+    });
+    $('.drop-reset').on('click',function(){
+        $('[draggable=true]').css('opacity',1);
+        $('*.drop-zone').attr('data-value',"");
+    })
 });

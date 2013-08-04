@@ -9,6 +9,8 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+html { font-size: 62.5%; }
+body { font-size: 1.4rem; }
 
 html,
 button,
@@ -19,7 +21,6 @@ textarea {
 }
 
 body {
-    font-size: 1em;
     line-height: 1.4;
 }
 

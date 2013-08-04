@@ -262,10 +262,17 @@
                 <p>{{intro}}</p>
             </header>
             <div class="row">
-                <div class="col tests">
-                    {{#tests}}
-                    <p data-validate="{{id}}">{{title}}</p>
-                    {{/tests}}
+                <div class="values">
+                    {{#values}}
+                    <div data-value="{{value}}" draggable="true">{{html}}</div>
+                    {{/values}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="keys">
+                    {{#keys}}
+                    <div data-keys="{{id}}" data-value="" class="drop-zone">{{html}}</div>
+                    {{/keys}}
                 </div>
             </div>
             <p class="tac button-bar">
