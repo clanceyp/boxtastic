@@ -141,7 +141,7 @@ a:hover, a:focus {
     div.editor.invalid {
         box-shadow: 0 0 4px 4px red;
     }
-    #editor {
+    div.editor>div {
         font-size: 11px;
         margin: 0;
         position: absolute;
@@ -326,4 +326,73 @@ div#content .ui-resizable-ne {
     height: 9px;
     right: -5px;
     top: -5px;
+}
+hr.divider {
+    background-color: transparent;
+    border-top: 1px dashed black ;
+    height: 1px;
+    margin: 30px auto;
+    text-align: center;
+    width: 80%;
+}
+*.drop-zone {
+    background-color: #000;
+    border: 1px solid #888;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 5px 12px;
+    position: relative;
+}
+*.drop-zone span.value {
+    border-radius: 3px;
+    border: 1px solid #333;
+    background-color: #cecece;
+    color : #333;
+    left: 50%;
+    opacity: 0.7;
+    padding: 3px;
+    position: absolute;
+    top: -10px;
+}
+*.drag-item {
+    background-color: #ddd;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 5px rgba(255,255,255,0);
+    color: #333;
+    cursor: pointer;
+    margin: 8px;
+    padding: 3px 8px;
+
+    transition: box-shadow 300ms linear;
+}
+*.drag-item:hover {
+    box-shadow: 0 0 5px 5px rgba(255,255,255,0.5);
+    text-decoration: none;
+}
+*.drag-item a {
+    color: inherit;
+    text-decoration: none!important;
+}
+div.type-single-select *.selected {
+    opacity: 0.5;
+}
+
+*.drop-zone.dragover {
+    opacity: 0.5;
+}
+
+
+
+*.tac {
+    text-align: center;
+}
+*.tar {
+    text-align: right;
+}
+*.vat {
+    vertical-align: top;
+}
+*.dib {
+    display: inline-block;
 }

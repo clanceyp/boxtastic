@@ -8,6 +8,7 @@ var tests=
         "template":"test-two-col-simple",
         "name":"booga",
         "id":101,
+        "row":2,
         "button":"run my code",
         "action":function(container, obj){
             var userInput,
@@ -80,6 +81,7 @@ var tests=
             "template":"test-two-col-simple",
             "name":"Validate this",
             "id":102,
+            "row":2,
             "button":"validate...",
             "solution":"invalid",
             "action":function(container, obj){
@@ -106,9 +108,9 @@ var tests=
                             window.testLoader.saveSolution(test.id, userInput, test.loaded);
                         }
                     }).fail(function() {
-                        console.log('connection error');
-                        $(container).find('div.tests p[data-validate='+id+']').addClass( 'fail' );
-                    });
+                            console.log('connection error');
+                            $(container).find('div.tests p[data-validate='+id+']').addClass( 'fail' );
+                        });
             },
             "base":"<!doctype html>"+
                 "\n<html>"+
@@ -125,5 +127,104 @@ var tests=
                     "id":"html5001",
                     "title":"validator.w3.org"
                 }
-            ]}
+            ]
+        },
+        {
+            "type":"single-select",
+            "about":"Who invented the internet?",
+            "intro":"Which South Londoner is credited with inventing the internet in 1989?",
+            "template":"test-two-row-simple",
+            "name":"Match",
+            "row":3,
+            "id":103,
+            "button":"Next",
+            "reset":false,
+            "solution":"invalid",
+            "action":function(container, obj){
+                var test = this;
+                window.testLoader.saveSolution(test.id, obj, test.loaded);
+            },
+            "base":"",
+            "tests":[],
+            "keys":['Drag your answer here'],
+            "values":['Tim Berners-Lee','Tim Minchin','Tim Pigott-Smith']
+        },
+        {
+            "type":"single-select",
+            "about":"Valid font size unit?",
+            "intro":"Which of the following units of measurement is invalid CSS when used with - font-size : ; ?",
+            "template":"test-two-row-simple",
+            "name":"Match",
+            "row":3,
+            "id":104,
+            "button":"Next",
+            "reset":false,
+            "solution":"invalid",
+            "action":function(container, obj){
+                var test = this;
+                window.testLoader.saveSolution(test.id, obj, test.loaded);
+            },
+            "base":"",
+            "tests":[],
+            "keys":['Drag your answer here'],
+            "values":['-1px','0','100%','10pt','10px','1em','1rem','inherit','medium','smaller','x-large','xx-small']
+        },
+        {
+            "type":"multi-select",
+            "about":"Browser engines",
+            "intro":"Which of the following layout engines is associated with which browser?",
+            "template":"test-two-row-simple",
+            "name":"Match",
+            "row":4,
+            "id":105,
+            "button":"Next",
+            "reset":false,
+            "solution":"invalid",
+            "action":function(container, obj){
+                var test = this;
+                window.testLoader.saveSolution(test.id, obj, test.loaded);
+            },
+            "base":"",
+            "tests":[],
+            "values":['Blink (WebKit)','WebKit','Trident','KHTML','Gecko','Tasman','Presto','Gecko','Blink (WebKit)'],
+            "keys":['Firefox','Google Chrome','IE','Opera','Safari','Konqueror']
+        },
+        {
+            "type":"css",
+            "about":"CSS button",
+            "intro":"The visual desiger appologies, she hasn't decided on a font or colour pallet but you need to make a start, can you create the following button in CSS?",
+            "template":"test-two-col-css",
+            "name":"Match",
+            "row":5,
+            "id":106,
+            "button":"Next",
+            "reset":false,
+            "solution":"invalid",
+            "action":function(container, obj){
+                var test = this;
+                window.testLoader.saveSolution(test.id, obj, test.loaded);
+            },
+            "base":"",
+            "tests":[]
+        }
+        /*,
+        {
+            "type":"match",
+            "about":"Valid HTML5",
+            "intro":"This is the intro text?",
+            "template":"test-two-col-simple",
+            "name":"Match",
+            "id":103,
+            "button":"",
+            "solution":"invalid",
+            "action":function(container, obj){
+                 var test = this;
+                 window.testLoader.saveSolution(test.id, obj, test.loaded);
+            },
+            "base":"",
+            "tests":[{
+                    "data":"HTML5"
+            }]
+        }
+        */
     ];

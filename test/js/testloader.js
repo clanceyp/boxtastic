@@ -11,6 +11,9 @@
             }
             return this.currentTest;
         },
+        getTestById:function(id){
+            return _
+        },
         load:function(test, container){
             var editor;
 
@@ -19,8 +22,10 @@
                 $(container).html(
                     Mustache.render($( '#'+test.template ).text(), test)
                 );
-                editor = ace.edit( $(container).find('div.editor>div').get(0));
-                setEditor();
+                if (!!$(container).find('div.editor>div').length){
+                    editor = ace.edit( $(container).find('div.editor>div').get(0));
+                    setEditor();
+                }
             }
             function setEditor(){
                 var theme = 'solarized_dark';
@@ -31,6 +36,17 @@
                 editor.getSession().setMode("ace/mode/"+test.type);
                 editor.renderer.setShowGutter(false);
                 editor.setValue( test.base );
+            }
+            function selectSaveAndForward(){
+                var keys = $(container).find('[data-test-id="'+ test.id +'"]'),
+                    keyValue = {},
+                    obj = {};
+                $(keys).each(function(i, key){
+                    keyValue[$(key).attr('data-key')] = $(key).attr('data-value');
+                })
+                obj.test = keyValue;
+                test.action(container, obj);
+                window.box.go('right');
             }
             function runTest(){
                 var obj = {
@@ -48,10 +64,17 @@
                     },300);
                 }
             }
+            function buttonAction( ){
+                if (test.type.indexOf('select') > 0){
+                    selectSaveAndForward();
+                } else {
+                    runTest();
+                }
+            }
 
             draw();
             test.loaded = new Date();
-            $(container).find('.test-go').on('click',runTest);
+            $(container).find('.test-go').on('click',buttonAction);
         },
         saveSolution:function(id, userInput, loaded){
             var json = "",

@@ -188,6 +188,16 @@
             </div>
         </section>
     </div>
+    <div class="row">
+        <section id="page01" class="page"><div class="content">
+            <h2>page 11</h2>
+            <p>im page one</p></div>
+        </section>
+        <section id="page02" class="page"><div class="content">
+            <h2>page 12</h2>
+            <p>im page 12</p></div>
+        </section>
+    </div>
 </div>
 
 <!--
@@ -200,7 +210,6 @@
 -->
 
     <script src="js/vendor/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/onload.js"></script>
 
 
 
@@ -213,71 +222,88 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/css.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/javascript.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/rainbow/1.1.8/js/language/html.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
 
     <script src="js/jquery.mustache.js"></script>
     <script src="js/vendor/mustache.js"></script>
     <script src="js/testloader.js"></script>
     <script src="js/tests.js"></script>
+    <script src="js/onload.js"></script>
 
 <script type="text/mustache" id="test-two-row-simple">
-    <div class="card type-{{type}}" data-test-id="{{id}}">
-        <header class="test-header">
-            <h2 class="small-box-shadow">{{about}}</h2>
-            <p>{{intro}}</p>
-        </header>
-        <div class="row">
-            <div class="values tac">
-                {{#values}}
-                <div class="dib drag-item" data-value="{{value}}" draggable="true"><a class="value">{{.}}</a></div>
-                {{/values}}
-            </div>
-        </div>
-        <hr class="divider"/>
-        <div class="row">
-            <div class="keys tac">
-                {{#keys}}
-                <div data-key="{{.}}" data-test-id="{{id}}" data-value="" class="drop-zone dib"><span class="key">{{.}}</span><span class="value"></span></div>
-                {{/keys}}
-            </div>
-        </div>
-        <p class="tac button-bar">
-            <input class="test-go big-button button" type="button" value="{{button}}"/>
-            {{#reset}}
-            <input class="drop-reset" type="button" value="reset" />
-            {{/reset}}
-        </p>
-    </div>
-</script>
-
-
-<script type="text/mustache" id="test-two-col-simple">
-        <div class="card">
+        <div class="card type-{{type}}">
             <header class="test-header">
                 <h2 class="small-box-shadow">{{about}}</h2>
                 <p>{{intro}}</p>
             </header>
             <div class="row">
-                <div class="resizable col editor">
-                    <div id="editor{{id}}"></div>
+                <div class="values tac">
+                    {{#values}}
+                    <a data-value="{{value}}" class="dib drag-item value" draggable="true" tabindex="0">{{.}}</a>
+                    {{/values}}
                 </div>
-                <div class="col tests">
-                    {{#tests}}
-                    <p data-validate="{{id}}">{{title}}</p>
-                    {{/tests}}
+            </div>
+            <hr class="divider"/>
+            <div class="row">
+                <div class="keys tac">
+                    {{#keys}}
+                    <div data-key="{{.}}" data-test-id="{{id}}" data-value="" class="drop-zone dib"><span class="key">{{.}}</span><span class="value"></span></div>
+                    {{/keys}}
                 </div>
             </div>
             <p class="tac button-bar">
                 <input class="test-go big-button button" type="button" value="{{button}}"/>
+                {{#reset}}
+                <input class="drop-reset" type="button" value="reset" />
+                {{/reset}}
             </p>
         </div>
     </script>
+test
+<script type="text/mustache" id="test-two-col-simple">
+    <div class="card">
+        <header class="test-header">
+            <h2 class="small-box-shadow">{{about}}</h2>
+            <p>{{intro}}</p>
+        </header>
+        <div class="row">
+            <div class="resizable col editor">
+                <div class="editor"></div>
+            </div>
+            <div class="col tests">
+                {{#tests}}
+                <p data-validate="{{id}}">{{title}}</p>
+                {{/tests}}
+            </div>
+        </div>
+        <p class="tac button-bar">
+            <input class="test-go big-button button" type="button" value="{{button}}"/>
+        </p>
+    </div>
+</script>
+
+<script type="text/mustache" id="test-two-col-css">
+    <div class="card">
+        <header class="test-header">
+            <h2 class="small-box-shadow">{{about}}</h2>
+            <p>{{intro}}</p>
+        </header>
+        <div class="row">
+            <div class="resizable col editor">
+                <div class="editor"></div>
+            </div>
+            <div class="col tests">
+                {{#tests}}
+                <p data-validate="{{id}}">{{title}}</p>
+                {{/tests}}
+            </div>
+        </div>
+        <p class="tac button-bar">
+            <input class="test-go big-button button" type="button" value="{{button}}"/>
+        </p>
+    </div>
+</script>
     <script>
-        $(document).ready(function(){
-            for (var i = 0, l = tests.length; i<l; i++){
-            //    testLoader.load( tests[ i ], "div.row:nth-child(2) section:nth-child("+ (i + 1) +")" );
-            }
-        })
+        tests.showSingleTest = 5;// index of test you want to load
     </script>
     </body>
 </html>

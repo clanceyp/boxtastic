@@ -33,8 +33,8 @@
             if (nextIndex < 0){
                 nextIndex = box.currentPage[1] = ( $('#'+box.storeId+' div.row:nth-child('+ (row+1) +') section').length-1 );
             }
-            nextContent = $('#'+box.storeId+' div.row:nth-child('+ (row+1) +') section:nth-child('+ (nextIndex+1) +')');
-            $('#content div.row:nth-child('+ (row+1) +') section:nth-child('+ (nextIndex+1) +')').addClass('pending')
+            nextContent = $('#'+box.storeId+'>div.row:nth-child('+ (row+1) +')>section:nth-child('+ (nextIndex+1) +')');
+            $('#content div.row:nth-child('+ (row+1) +') section:nth-child('+ (nextIndex+1) +')').addClass('pending');
             $("#content section").removeClass('active');
 
             box.setContent({
@@ -47,7 +47,7 @@
             // go to the previous page in the row
             var row = box.currentPage[0],
                 index = box.currentPage[1],
-                content = $('#'+box.storeId+' div.row:nth-child('+ (row+1) +') section:nth-child('+ (index+1) +')'),
+                content = $('#'+box.storeId+'>div.row:nth-child('+ (row+1) +')>section:nth-child('+ (index+1) +')'),
                 nextIndex = ++box.currentPage[1],
                 nextContent;
 
@@ -58,7 +58,7 @@
             nextContent = $('#'+box.storeId+' div.row:nth-child('+ (row+1) +') section:nth-child('+ (nextIndex+1) +')');
 
             $("#content section").removeClass('active');
-            $("#content").find('div.row:nth-child('+ (row+1) +') section:nth-child('+ (nextIndex+1) +')').addClass('pending');
+            $("#content").find('div.row:nth-child('+ (row+1) +')>section:nth-child('+ (nextIndex+1) +')').addClass('pending');
             box.setContent({
                 current: $(content).clone(),
                 next: $(nextContent).clone()
@@ -67,7 +67,7 @@
         },
         up:function(){
             var row = box.currentPage[0],
-                content = $('#'+box.storeId+' div.row:nth-child('+ (row+1) +') section:nth-child('+ (box.currentPage[1]+1) +')'),
+                content = $('#'+box.storeId+'>div.row:nth-child('+ (row+1) +')>section:nth-child('+ (box.currentPage[1]+1) +')'),
                 index = box.currentPage[1] = 0,
                 rowCount = $('#'+box.storeId+'>div.row').length,
                 nextRow = --box.currentPage[0], nextContent;
@@ -75,7 +75,7 @@
             if (nextRow < 0){
                 nextRow = box.currentPage[0] = (rowCount-1);
             }
-            nextContent = $('#'+box.storeId+' div.row:nth-child('+ (nextRow+1) +') section:first-child');
+            nextContent = $('#'+box.storeId+'>div.row:nth-child('+ (nextRow+1) +')>section:first-child');
 
             $("#content section").removeClass('active');
             $('#content div.row:nth-child('+ (nextRow+1) +') section:first-child').addClass('pending');
@@ -144,7 +144,7 @@
             if (page){
                 return page;
             } else {
-                console.log('not implemented')
+                console.log('not implemented');
             }
         },
         toggleFullscreen:function(){
