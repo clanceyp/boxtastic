@@ -172,7 +172,7 @@ var tests=
         {
             "type":"multi-select",
             "about":"Browser engines",
-            "intro":"Which of the following layout engines is associated with which browser?",
+            "intro":"Which of the following layout engines is associated with which browser? (You can use a value more than once)",
             "template":"test-two-row-simple",
             "name":"Match",
             "row":4,
@@ -186,14 +186,22 @@ var tests=
             },
             "base":"",
             "tests":[],
-            "values":['Blink (WebKit)','WebKit','Trident','KHTML','Gecko','Tasman','Presto','Gecko','Blink (WebKit)'],
-            "keys":['Firefox','Google Chrome','IE','Opera','Safari','Konqueror']
+            "values":['Blink (WebKit)','WebKit','Trident','KHTML','Gecko','Tasman','Presto'],
+            "keys":['Firefox','Google Chrome','Internet Explorer','Opera','Safari','Konqueror']
         },
         {
             "type":"css",
             "about":"CSS button",
-            "intro":"The visual desiger appologies, she hasn't decided on a font or colour pallet but you need to make a start, can you create the following button in CSS?",
-            "template":"test-two-col-css",
+            "intro":"Jennifer, the visual designer apologies, she hasn't decided on a font or colour pallet but she has made a start, can you create the following button in CSS?",
+            "template":"test-two-row-css",
+            "image":{
+                "title":"Jennifer's design in progress",
+                "src":"/i/tests/boom.png"
+            },
+            "html":{
+                "title":"Your HTML...",
+                "html":'<div class="test-button-container"><input type="button" class="standard-button" value="Boom!" /></div>'
+            },
             "name":"Match",
             "row":5,
             "id":106,
@@ -204,7 +212,17 @@ var tests=
                 var test = this;
                 window.testLoader.saveSolution(test.id, obj, test.loaded);
             },
-            "base":"",
+            "base":"input.standard-button {"+
+                "\n\tbackground: #005;"+
+                "\n\tcolor: #FFA600;"+
+                "\n\tfont-size: 2.5em;"+
+                "\n\tfont-weight: bold;"+
+                "\n\tpadding: 6px 25px;"+
+                "\n}"+
+                "\ndiv.test-button-container {"+
+                    "\n\tbackground: #fff url(http://subtlepatterns.com/patterns/brickwall.png);"+
+                    "\n\tpadding: 20px;"+
+                "\n}",
             "tests":[]
         }
         /*,

@@ -12,7 +12,7 @@
             return this.currentTest;
         },
         getTestById:function(id){
-            return _
+            return 'not implemented';
         },
         load:function(test, container){
             var editor;
@@ -36,6 +36,17 @@
                 editor.getSession().setMode("ace/mode/"+test.type);
                 editor.renderer.setShowGutter(false);
                 editor.setValue( test.base );
+                if (test.type === 'css'){
+                    var style = document.createElement('style');
+                    style.textContent = test.base;
+                    document.getElementsByTagName('head')[0].appendChild( style );
+                    StyleFix.styleElement(style);
+                    editor.on('change',function(e){
+                        console.log(editor.getValue());
+                        style.textContent = editor.getValue();
+                        StyleFix.styleElement(style);
+                    });
+                }
             }
             function selectSaveAndForward(){
                 var keys = $(container).find('[data-test-id="'+ test.id +'"]'),
@@ -43,7 +54,7 @@
                     obj = {};
                 $(keys).each(function(i, key){
                     keyValue[$(key).attr('data-key')] = $(key).attr('data-value');
-                })
+                });
                 obj.test = keyValue;
                 test.action(container, obj);
                 window.box.go('right');
@@ -85,7 +96,7 @@
                 obj.duration = getTimeDiff(loaded, completed);
                 json = JSON.stringify( obj );
             } catch(e){
-                console.log(e);
+                window.console.log(e);
             }
             localStorage.setItem("TEST-"+id, json);
             function getTimeDiff(loaded, completed){

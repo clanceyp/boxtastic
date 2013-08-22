@@ -281,20 +281,32 @@ test
     </div>
 </script>
 
-<script type="text/mustache" id="test-two-col-css">
+<script type="text/mustache" id="test-two-row-css">
     <div class="card">
         <header class="test-header">
             <h2 class="small-box-shadow">{{about}}</h2>
             <p>{{intro}}</p>
+            {{#image}}
+                <div class="half">
+                    {{#title}}
+                    <h3>{{title}}</h3>
+                    {{/title}}
+                    <div class="img"><img src="{{src}}" alt="Image of element user must match with HTML and CSS" /></div>
+                </div>
+            {{/image}}
+            {{#html}}
+                <div class="half">
+                    {{#title}}
+                    <h3>{{title}}</h3>
+                    {{/title}}
+                    {{{html}}}
+                </div>
+            {{/html}}
+            <p class="clear">&nbsp;</p>
         </header>
         <div class="row">
-            <div class="resizable col editor">
-                <div class="editor"></div>
-            </div>
-            <div class="col tests">
-                {{#tests}}
-                <p data-validate="{{id}}">{{title}}</p>
-                {{/tests}}
+            <div class="editor relative" style="min-height:150px">
+                <div id="editor{{id}}"></div>
             </div>
         </div>
         <p class="tac button-bar">

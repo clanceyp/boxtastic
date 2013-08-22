@@ -237,7 +237,7 @@
         <div class="row">
             <div class="keys tac">
                 {{#keys}}
-                <div data-key="{{.}}" data-test-id="{{id}}" data-value="" class="drop-zone dib"><span class="key">{{.}}</span><span class="value"></span></div>
+                <div data-key="{{.}}" data-test-id="{{id}}" data-value="" class="drop-zone dib"><span class="key">{{.}}</span><span class="returnValue"></span></div>
                 {{/keys}}
             </div>
         </div>
@@ -252,32 +252,60 @@
 
 
 <script type="text/mustache" id="test-two-col-simple">
-        <div class="card">
-            <header class="test-header">
-                <h2 class="small-box-shadow">{{about}}</h2>
-                <p>{{intro}}</p>
-            </header>
-            <div class="row">
-                <div class="resizable col editor">
-                    <div id="editor{{id}}"></div>
-                </div>
-                <div class="col tests">
-                    {{#tests}}
-                    <p data-validate="{{id}}">{{title}}</p>
-                    {{/tests}}
-                </div>
+    <div class="card">
+        <header class="test-header">
+            <h2 class="small-box-shadow">{{about}}</h2>
+            <p>{{intro}}</p>
+        </header>
+        <div class="row">
+            <div class="resizable col editor">
+                <div id="editor{{id}}"></div>
             </div>
-            <p class="tac button-bar">
-                <input class="test-go big-button button" type="button" value="{{button}}"/>
-            </p>
+            <div class="col tests">
+                {{#tests}}
+                <p data-validate="{{id}}">{{title}}</p>
+                {{/tests}}
+            </div>
         </div>
-    </script>
-    <script>
-        $(document).ready(function(){
-            for (var i = 0, l = tests.length; i<l; i++){
-            //    testLoader.load( tests[ i ], "div.row:nth-child(2) section:nth-child("+ (i + 1) +")" );
-            }
-        })
-    </script>
+        <p class="tac button-bar">
+            <input class="test-go big-button button" type="button" value="{{button}}"/>
+        </p>
+    </div>
+</script>
+
+<script type="text/mustache" id="test-two-row-css">
+    <div class="card">
+        <header class="test-header">
+            <h2 class="small-box-shadow">{{about}}</h2>
+            <p>{{intro}}</p>
+            {{#image}}
+            <div class="half">
+                {{#title}}
+                <h3>{{title}}</h3>
+                {{/title}}
+                <div class="img soft-border"><img src="{{src}}" alt="Image of element user must match with HTML and CSS" /></div>
+            </div>
+            {{/image}}
+            {{#html}}
+            <div class="half">
+                {{#title}}
+                <h3>{{title}}</h3>
+                {{/title}}
+                {{{html}}}
+            </div>
+            {{/html}}
+            <p class="clear">&nbsp;</p>
+        </header>
+        <div class="row">
+            <div class="editor relative" style="height:150px">
+                <div id="editor{{id}}" style="height:130px"></div>
+            </div>
+        </div>
+        <p class="tac button-bar">
+            <input class="test-go big-button button" type="button" value="{{button}}"/>
+        </p>
+    </div>
+</script>
+
     </body>
 </html>

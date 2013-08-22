@@ -175,7 +175,7 @@
                 if (!$(el).hasClass('viewed')){
                     $(el).attr('data-original-text', $(el).text() ).addClass('viewed');
                 }
-                $(el).text( e.dataTransfer.getData('value') );
+                $(el).find('span.returnValue').text( e.dataTransfer.getData('value') );
             });
         });
         $('*.type-multi-select *.drop-zone').each(function(i, el){
@@ -186,7 +186,7 @@
                 if (!$(el).hasClass('viewed')){
                     $(el).addClass('viewed');
                 }
-                $(el).find('span.value').text( e.dataTransfer.getData('value') );
+                $(el).find('span.returnValue').text( e.dataTransfer.getData('value') );
             });
         });
         $('.drop-reset').on('click',function(){

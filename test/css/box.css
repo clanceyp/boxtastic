@@ -1,4 +1,4 @@
-@import 'ace.css';
+@import '/css/ace.css';
 
 div.box-container {
     perspective: 1000px;
