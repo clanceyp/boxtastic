@@ -79,18 +79,18 @@
                     <p>If you have been asked to complete this by a prospective employer,
                         please enter your access code and your email address.
                         </p>
-                    <fieldset>
+                    <fieldset class="login-form">
                     <p>
-                        <label for="reg-code">12 digit code</label>
-                        <input id="reg-code" type="text">
+                        <label for="reg-code">Access code</label>
+                        <input id="reg-code" data-message="GMM-J7-xxxxx" type="text">
                     </p>
 
                     <p>
-                        <label for="email">email address</label>
-                        <input id="email" data-message="email" type="text" value="">
+                        <label for="email">Email address</label>
+                        <input id="email" data-message="email@address.com" type="text" value="">
                     </p>
                     <p>
-                        <input id="submit" class="left-margin dark" type="submit" value="Log in">
+                        <input id="submit" class="login-margin light button" type="submit" value="Log in">
                     </p>
                     </fieldset>
                     <!--
@@ -237,7 +237,7 @@
         <div class="row">
             <div class="keys tac">
                 {{#keys}}
-                <div data-key="{{.}}" data-test-id="{{id}}" data-value="" class="drop-zone dib"><span class="key">{{.}}</span><span class="returnValue"></span></div>
+                <div data-key="{{.}}" data-test-id="{{id}}" data-value="" class="drop-zone dib drop-zone-{{type}}"><span class="key">{{.}}</span><span class="returnValue"></span></div>
                 {{/keys}}
             </div>
         </div>
@@ -250,7 +250,22 @@
     </div>
 </script>
 
-
+<script type="text/mustache" id="static-content">
+    <div class="card">
+        <header class="test-header">
+            <h2 class="small-box-shadow">{{about}}</h2>
+            <p>{{intro}}</p>
+        </header>
+        <div class="row">
+            <div class="">
+                {{{content}}}
+            </div>
+        </div>
+        <p class="tac button-bar">
+            <input class="test-go big-button button" type="button" value="{{button}}"/>
+        </p>
+    </div>
+</script>
 <script type="text/mustache" id="test-two-col-simple">
     <div class="card">
         <header class="test-header">
@@ -283,7 +298,7 @@
                 {{#title}}
                 <h3>{{title}}</h3>
                 {{/title}}
-                <div class="img soft-border"><img src="{{src}}" alt="Image of element user must match with HTML and CSS" /></div>
+                <div class="img"><img src="{{src}}" alt="Image of element user must match with HTML and CSS" /></div>
             </div>
             {{/image}}
             {{#html}}

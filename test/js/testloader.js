@@ -28,7 +28,17 @@
                 }
             }
             function setEditor(){
-                var theme = 'solarized_dark';
+                var theme = 'solarized_dark',
+                    updatecss = false,
+                    update = function(){
+                        var value = editor.getValue();
+                        style.textContent = value;
+                        StyleFix.styleElement(style);
+                        test.action(container, {
+                            editorValue:value,
+                            testStatus:test.getStatus()
+                        });
+                    };
 
                 $(container).find("div.editor").addClass('ace-'+theme.replace(/_/g,'-'));
 
@@ -42,9 +52,16 @@
                     document.getElementsByTagName('head')[0].appendChild( style );
                     StyleFix.styleElement(style);
                     editor.on('change',function(e){
-                        console.log(editor.getValue());
-                        style.textContent = editor.getValue();
+                        if (updatecss){
+                            clearTimeout(updatecss);
+                        }
+                        updatecss = setTimeout(update,1000);
+                        /*
+                        var value = editor.getValue();
+                        style.textContent = value;
                         StyleFix.styleElement(style);
+                        test.action(container, {test:value});
+                        */
                     });
                 }
             }
@@ -76,7 +93,9 @@
                 }
             }
             function buttonAction( ){
-                if (test.type.indexOf('select') > 0){
+                if (test.type === 'css'){
+                    window.box.go('right');
+                } else if (test.type.indexOf('select') > 0){
                     selectSaveAndForward();
                 } else {
                     runTest();

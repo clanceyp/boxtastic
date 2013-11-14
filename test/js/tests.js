@@ -42,7 +42,13 @@ var tests=
                             errorCount++;
                             status = "fail";
                         }
-                        $(container).find("p[data-validate="+ this.tests[item].id +"]").addClass( status).append('<span class="returnValue">'+returnValue+'</span>');
+                        $(container)
+                            .find("p[data-validate="+ this.tests[item].id +"]")
+                            .remove('span.returnValue')
+                            .removeClass('pass')
+                            .removeClass('fail')
+                            .addClass( status )
+                            .append('<span class="returnValue">'+returnValue+'</span>');
                     }
                 }
                 if (errorCount === 0){
@@ -192,14 +198,14 @@ var tests=
         {
             "type":"css",
             "about":"CSS button",
-            "intro":"Jennifer, the visual designer apologies, she hasn't decided on a font or colour pallet but she has made a start, can you create the following button in CSS?",
+            "intro":"Jennifer (the visual designer) apologies, she hasn't decided on a font or colour pallet but she has made a start on the promo button style, can you create the following button in CSS?",
             "template":"test-two-row-css",
             "image":{
                 "title":"Jennifer's design in progress",
                 "src":"/i/tests/boom.png"
             },
             "html":{
-                "title":"Your HTML...",
+                "title":"Your HTML (input[type=button])",
                 "html":'<div class="test-button-container"><input type="button" class="standard-button" value="Boom!" /></div>'
             },
             "name":"Match",
@@ -212,18 +218,39 @@ var tests=
                 var test = this;
                 window.testLoader.saveSolution(test.id, obj, test.loaded);
             },
-            "base":"input.standard-button {"+
+            "base": "/* \nEdit CSS below to make your input[type=button].standard-button \nmatch the design (as close as you can). \nHouse style; rules in alphabetical order and prefixfree \n*/"+
+                "\ninput.standard-button {"+
                 "\n\tbackground: #005;"+
                 "\n\tcolor: #FFA600;"+
-                "\n\tfont-size: 2.5em;"+
                 "\n\tfont-weight: bold;"+
-                "\n\tpadding: 6px 25px;"+
                 "\n}"+
+                "\n/* No need to edit the container styles */"+
                 "\ndiv.test-button-container {"+
-                    "\n\tbackground: #fff url(http://subtlepatterns.com/patterns/brickwall.png);"+
+                    "\n\tbackground: #fff url('http://subtlepatterns.com/patterns/brickwall.png');"+
+                    "\n\tborder-radius:5px;"+
                     "\n\tpadding: 20px;"+
                 "\n}",
             "tests":[]
+        },
+        {
+            "type":"single-select",
+            "about":"Tabbed browsing",
+            "intro":"Which was the first major browser vendor to start shipping its browser with tabbed browsing in 2000?",
+            "template":"test-two-row-simple",
+            "name":"Match",
+            "row":3,
+            "id":107,
+            "button":"Next",
+            "reset":false,
+            "solution":"invalid",
+            "action":function(container, obj){
+                var test = this;
+                window.testLoader.saveSolution(test.id, obj, test.loaded);
+            },
+            "base":"",
+            "tests":[],
+            "keys":['Drag your answer here'],
+            "values":['Firefox','Chrome','IE','Opera','Safari','Konqueror','Netscape Navigator']
         }
         /*,
         {
